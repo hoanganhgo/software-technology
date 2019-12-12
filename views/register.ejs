@@ -1,0 +1,31 @@
+<html>
+<head>
+    <title>Login</title>
+    <%include elements/head_tag.html%>
+</head>
+<body>
+<%include elements/header.ejs%>
+<div class="col-sm-9 col-md-7 col-lg-5 mx-auto">
+    <div class="card card-signin my-5">
+        <div class="card-body">
+            <h5 class="card-title text-center">Đăng ký</h5>
+            <form class="form-signin">
+                    <input type="text" id="inputEmail" class="form-control" placeholder="Tên Tài khoản" required autofocus><br>
+                    <input type="password" id="inputPassword" class="form-control" placeholder="Mật khẩu" required><br>
+                    <input type="password" id="inputEmail" class="form-control" placeholder="Nhập lại mật khẩu" required autofocus><br>
+                    <input type="email" id="inputEmail" class="form-control" placeholder="Địa chỉ Email" required autofocus><br>
+
+                <div class="custom-control custom-checkbox mb-3">
+                    <input type="checkbox" class="custom-control-input" id="customCheck1">
+                    <label class="custom-control-label" for="customCheck1">Tôi đồng ý với các <a href="rules">Điều Khoản Dịch Vụ</a></label>
+                </div>
+
+                <button class="btn btn-lg btn-primary btn-block text-uppercase" type="submit">Đăng Ký</button>
+                <hr class="my-4">
+            </form>
+        </div>
+    </div>
+</div>
+<%include elements/footer.html%>
+</body>
+</html>
