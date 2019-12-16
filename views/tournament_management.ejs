@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title><%= title%></title>
+    <% include elements/head_tag.html%>
+</head>
+
+<body>
+    <%include elements/header.ejs%>
+
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-3">
+                <%include elements/menu.ejs%>
+            </div>
+            <div class="col-lg-7">
+                <div class="row justify-content-center">
+                    <h2>GIẢI ĐẤU CỦA BẠN</h2>
+                </div>
+                <table class="table">
+                    <thead>
+                        <tr>
+                            <th scope="col">STT</th>
+                            <th scope="col">Tên giải đấu</th>
+                            <th scope="col"></th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <th scope="row">1</th>
+                            <td>League Cup 2019</td>
+                            <td><button type="button" class="btn btn-primary">Cập nhật</button></td>
+                            <td><button type="button" class="btn btn-warning">Xóa</button></td>
+                        </tr>
+                        <tr>
+                            <th scope="row">2</th>
+                            <td>V-League Cup 2019</td>
+                            <td><button type="button" class="btn btn-primary">Cập nhật</button></td>
+                            <td><button type="button" class="btn btn-warning">Xóa</button></td>
+                        </tr>
+                        <tr>
+                            <th scope="row">3</th>
+                            <td>Cup Không Chuyên</td>
+                            <td><button type="button" class="btn btn-primary">Cập nhật</button></td>
+                            <td><button type="button" class="btn btn-warning">Xóa</button></td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+
+
+    <%include elements/footer.html%>
+</body>
+
+</html>

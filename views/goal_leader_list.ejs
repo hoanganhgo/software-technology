@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <title><%= title%></title>
+  <% include elements/head_tag.html%>
+</head>
+
+<body>
+  <%include elements/header.ejs%>
+
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-3">
+      </div>
+      <div class="col-lg-7">
+        <div class="row justify-content-center">
+          <h2>VUA PHÁ LƯỚI</h2>
+        </div>
+        <table class="table table-striped">
+          <thead>
+            <tr>
+              <th scope="col">STT</th>
+              <th scope="col">Cầu thủ</th>
+              <th scope="col">CLB</th>
+              <th scope="col">Bàn thắng</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <th scope="row">1</th>
+              <td>Hà Đức Chinh</td>
+              <td>Đà Nẵng</td>
+              <td>15</td>
+            </tr>
+            <tr>
+              <th scope="row">2</th>
+              <td>Nguyễn Tiến Linh</td>
+              <td>Becamex Bình Dương</td>
+              <td>13</td>
+            </tr>
+            <tr>
+              <th scope="row">3</th>
+              <td>Nguyễn Quang Hải</td>
+              <td>Hà Nội T&T</td>
+              <td>12</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+
+  <%include elements/footer.html%>
+</body>
+
+</html>

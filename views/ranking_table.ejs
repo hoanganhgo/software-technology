@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <title><%= title%></title>
+  <% include elements/head_tag.html%>
+</head>
+
+<body>
+  <%include elements/header.ejs%>
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-3">
+      </div>
+      <div class="col-lg-7">
+        <div class="row justify-content-center">
+          <h2>BẢNG XẾP HẠNG</h2>
+        </div>
+        <table class="table">
+          <thead class="thead-light">
+            <tr>
+              <th scope="col">STT</th>
+              <th scope="col">Câu lạc bộ</th>
+              <th scope="col">ĐĐ</th>
+              <th scope="col">Thắng</th>
+              <th scope="col">H</th>
+              <th scope="col">Thua</th>
+              <th scope="col">BT</th>
+              <th scope="col">SBT</th>
+              <th scope="col">HS</th>
+              <th scope="col">Đ</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <th scope="row">1</th>
+              <td>Hà nội T&T</td>
+              <td>26</td>
+              <td>15</td>
+              <td>8</td>
+              <td>3</td>
+              <td>60</td>
+              <td>30</td>
+              <td>30</td>
+              <td>56</td>
+            </tr>
+            <tr>
+              <th scope="row">2</th>
+              <td>TP.HCM</td>
+              <td>26</td>
+              <td>15</td>
+              <td>8</td>
+              <td>3</td>
+              <td>60</td>
+              <td>30</td>
+              <td>30</td>
+              <td>56</td>
+            </tr>
+            <tr>
+              <th scope="row">3</th>
+              <td>Than Quảng Ninh</td>
+              <td>26</td>
+              <td>15</td>
+              <td>8</td>
+              <td>3</td>
+              <td>60</td>
+              <td>30</td>
+              <td>30</td>
+              <td>56</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+
+  <%include elements/footer.html%>
+</body>
+
+</html>
