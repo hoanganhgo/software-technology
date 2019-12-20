@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title><%= title%></title>
+    <% include elements/head_tag.html%>
+</head>
+
+<body>
+    <%include elements/header.ejs%>
+
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-3">
+                <%include elements/menu.ejs%>
+            </div>
+            <div class="col-lg-7">
+                <div class="row justify-content-center"><h2>Cập nhật tỷ số</h2></div>
+                <form>
+                    <div class="form-row text-sm-center">
+                        <div class="col">
+                            <p><b>Đội nhà</b></p>
+                        </div>
+                        <div class="col">
+                            <p><b>Đội khách</b></p>
+                        </div>
+                    </div>
+                    <div class="form-row">
+                        <div class="col">
+                            <input type="text" class="form-control" id="team_name" placeholder="Tên đội nhà.." name="home_team_name">
+                        </div>
+                        <div class="col">
+                            <input type="text" class="form-control" id="team_name" placeholder="Tên đội khách.." name="guest_team_name">
+                        </div>
+                    </div>
+                    <div class="form-row" style="margin-top: 10px;">
+                        <div class="col">
+                            <input type="number" class="form-control" id="scores" placeholder="Tỷ số.." name="home_scores">
+                        </div>
+                        <div class="col">
+                            <input type="number" class="form-control" id="scores" placeholder="Tỷ số.." name="guest_scores">
+                        </div>
+                    </div>
+                    <div class="form-row" style="margin-top: 10px; margin-bottom: 20px;">
+                        <div class="col">
+                            <input type="text" class="form-control" id="scoring_players" placeholder="Cầu thủ ghi bàn.." name="home_scoring_players">
+                        </div>
+                        <div class="col">
+                            <input type="text" class="form-control" id="scoring_players" placeholder="Cầu thủ ghi bàn.." name="guest_scoring_players">
+                        </div>
+                    </div>
+                    <div class="form-group row text-sm-center">
+                        <div class="col-sm-10">
+                            <button type="submit" class="btn btn-primary">Cập nhật</button>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <%include elements/footer.html%>
+</body>
+
+</html>
