@@ -4,6 +4,7 @@
 <head>
     <title><%= title%></title>
     <% include elements/head_tag.html%>
+    <script src="/javascripts/read-excel-file.min.js"></script>
 </head>
 
 <body>
@@ -53,9 +54,30 @@
                             <input type="number" class="form-control" id="overAgePlayers">
                         </div>
                     </div>
+
                     <div class="form-group row text-sm-center">
                         <div class="col-sm-10">
-                            <button type="submit" class="btn btn-primary">Tạo giải đấu</button>
+                            <button type="button" class="btn btn-primary" onclick="CheckInput()">Xác nhận</button>
+                        </div>
+                    </div>
+
+                    <input type="file" id="inputFile" disabled/><br>
+                    <label id="notify" style="color: red;"></label><br>
+                    <div id="statusTable"></div><br>
+                    <div id="dtable"></div><br>
+                    <script>
+                        var input = document.getElementById('inputFile')
+                        input.addEventListener('change', function() {
+                            readXlsxFile(input.files[0]).then(function(data) {
+                                document.getElementById('dtable').innerHTML = '<table border=1>' + data.map(row => '<tr>' + row.map(cell => `<td>${cell === null ? '' : cell}</td>`).join('') + '</tr>').join('') + '</table>'
+                                checkListPlayer(data);
+                            })
+                        })
+                    </script>
+
+                    <div class="form-group row text-sm-center">
+                        <div class="col-sm-10">
+                            <button id="createButton" type="button" class="btn btn-primary" disabled>Tạo giải đấu</button>
                         </div>
                     </div>
                 </form>
