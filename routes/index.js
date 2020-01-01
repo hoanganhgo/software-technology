@@ -1,10 +1,10 @@
 var express = require('express');
+const Home=require('../controler/Home');
+const tournament=require('../controler/tournament_create');
 var router = express.Router();
 
 /* GET home page. */
-router.get('/', function(req, res, next) {
-  res.render('index', { title: 'Trang chủ' });
-});
+router.get('/', Home.getHome);
 
 /*GET login page*/
 router.get('/login',function(req,res,next){
@@ -27,9 +27,11 @@ router.get('/goal_leader_list', function(req, res, next){
 });
 
 /*GET tournament create page*/
-router.get('/tournament_create', function(req, res, next){
-  res.render('tournament_create', {title: 'Tạo giải đấu mới'});
-});
+router.get('/tournament_create', tournament.createTournament);
+
+/*GET create league*/
+//router.get('/create_league', tournament.createLeague);
+router.post('/create_league', tournament.createLeague);
 
 /*GET tournament management page*/
 router.get('/tournament_management', function(req, res, next){

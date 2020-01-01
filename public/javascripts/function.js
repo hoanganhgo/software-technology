@@ -57,6 +57,7 @@ function checkListPlayer(data) {
     let currentYear=(new Date()).getFullYear();
     let i=0;
     let start=true;
+
     for (i=0;i<n;i++)
     {
         if (start)
@@ -69,7 +70,7 @@ function checkListPlayer(data) {
         if (!isNaN(data[i][0]) && i!==(n-1))
         {
             NumberOfPlayers++;
-            let age=currentYear - data[i][2].getFullYear();
+            let age=currentYear - data[i][3].getFullYear();
             if (age>agelimit)
             {
                 overPlayer++;
@@ -77,7 +78,7 @@ function checkListPlayer(data) {
         }else{
             if (i===(n-1)){
                 NumberOfPlayers++;
-                let age=currentYear - data[i][2].getFullYear();
+                let age=currentYear - data[i][3].getFullYear();
                 if (age>agelimit)
                 {
                     overPlayer++;
@@ -165,6 +166,9 @@ function checkListPlayer(data) {
         if (confirm2===teams)
         {
             document.getElementById("createButton").disabled=false;
+            return true;
         }
     }
+    return false;
 }
+

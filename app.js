@@ -3,11 +3,26 @@ var express = require('express');
 var path = require('path');
 var cookieParser = require('cookie-parser');
 var logger = require('morgan');
+//var mysql = require('mysql');
 
 var indexRouter = require('./routes/index');
 var usersRouter = require('./routes/users');
 
 var app = express();
+
+// console.log('Get connection ...');
+// var conn = mysql.createConnection({
+//   host: '37.59.55.185',
+//   port: '3306',
+//   user: 'rb5YHmRcsc',
+//   password: 'tZqSHg4ISv',
+//   database: 'rb5YHmRcsc',
+// });
+//
+// conn.connect(function(err) {
+//   if (err) throw err;
+//   console.log("Connected!");
+// });
 
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
