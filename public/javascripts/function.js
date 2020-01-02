@@ -5,7 +5,10 @@ function CheckInput() {
     const max=document.getElementById('maximumPlayers').value;
     const lim=document.getElementById('ageLimit').value;
     const overAge=document.getElementById('overAgePlayers').value;
-
+    const startDate=document.getElementById("startDate").value;
+    let currentDay=new Date();
+    let CurrentDay=Date.parse(currentDay);
+    let StartDate=Date.parse(startDate);
     if (name==='')
     {
         document.getElementById('tournamentName').focus();
@@ -34,6 +37,13 @@ function CheckInput() {
     if (overAge==='')
     {
         document.getElementById('overAgePlayers').focus();
+        return;
+    }
+
+    if (StartDate<=CurrentDay)
+    {
+        alert("Ngày bắt đầu thi đấu không hợp lệ");
+        document.getElementById("startDate").focus();
         return;
     }
 

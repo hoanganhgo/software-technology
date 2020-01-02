@@ -4,18 +4,18 @@ const mysql = require('mysql');
 function createConnnection() {
     return mysql.createConnection({
      //Kết nối tới server thực tế.
-        // host: '37.59.55.185',
-        // port: '3306',
-        // user: 'rb5YHmRcsc',
-        // password: 'tZqSHg4ISv',
-        // database: 'rb5YHmRcsc',\
+        host: '37.59.55.185',
+        port: '3306',
+        user: 'rb5YHmRcsc',
+        password: 'tZqSHg4ISv',
+        database: 'rb5YHmRcsc',
 
     //Kết nối với server local
-        host: 'localhost',
-        port: '3306',
-        user: 'admin',
-        password: 'admin',
-        database: 'qlbd',
+    //     host: 'localhost',
+    //     port: '3306',
+    //     user: 'admin',
+    //     password: 'admin',
+    //     database: 'qlbd',
     });
 };
 

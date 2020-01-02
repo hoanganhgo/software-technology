@@ -5,9 +5,21 @@
     <title><%= title%></title>
     <% include elements/head_tag.html%>
     <script src="/javascripts/read-excel-file.min.js"></script>
+    <style>
+        #Progress_Status {
+            width: 100%;
+            background-color: #ddd;
+        }
+
+        #myprogressBar {
+            width: 2%;
+            height: 20px;
+            background-color: #4CAF50;
+        }
+    </style>
 </head>
 
-<body>
+<body onload="update()">
 <%include elements/header.ejs%>
 
 <div class="container">
@@ -16,72 +28,31 @@
             <%include elements/menu.ejs%>
         </div>
         <div class="col-lg-7">
-            <div class="row justify-content-center"><h2>Tạo giải đấu</h2></div>
+            <div id="Progress_Status">
+                <div id="myprogressBar"></div>
+            </div>
+            <script>
+                function update() {
+                    var element = document.getElementById("myprogressBar");
+                    var width = 1;
+                    var identity = setInterval(scene, 30);
+                    function scene() {
+                        if (width >= 100) {
+                            clearInterval(identity);
+                            document.getElementById("notify").hidden=false;
+                        } else {
+                            width++;
+                            element.style.width = width + '%';
+                        }
+                    }
+                }
+            </script>
+            <div class="row justify-content-center" id="notify" hidden><h2>Phát sinh lịch đấu thành công</h2></div>
+            <br>
             <form>
-                <div class="form-group row">
-                    <label for="tournamentName" class="col-sm-3 col-form-label">Tên giải đấu:</label>
-                    <div class="col-sm-9">
-                        <input type="text" class="form-control" id="tournamentName">
-                    </div>
-                </div>
-                <div class="form-group row">
-                    <label for="teamQuantity" class="col-sm-3 col-form-label">Số đội tham dự:</label>
-                    <div class="col-sm-9">
-                        <input type="number" class="form-control" id="teamQuantity">
-                    </div>
-                </div>
-                <div class="form-group row">
-                    <label for="minimumPlayers" class="col-sm-3 col-form-label">Số lượng cầu thủ tối thiểu:</label>
-                    <div class="col-sm-9">
-                        <input type="number" class="form-control" id="minimumPlayers">
-                    </div>
-                </div>
-                <div class="form-group row">
-                    <label for="maximumPlayers" class="col-sm-3 col-form-label">Số lượng cầu thủ tối đa:</label>
-                    <div class="col-sm-9">
-                        <input type="number" class="form-control" id="maximumPlayers">
-                    </div>
-                </div>
-                <div class="form-group row">
-                    <label for="ageLimit" class="col-sm-3 col-form-label">Độ tuổi giới hạn:</label>
-                    <div class="col-sm-9">
-                        <input type="number" class="form-control" id="ageLimit">
-                    </div>
-                </div>
-                <div class="form-group row">
-                    <label for="overAgePlayers" class="col-sm-3 col-form-label">Số lượng cầu thủ vượt tuổi:</label>
-                    <div class="col-sm-9">
-                        <input type="number" class="form-control" id="overAgePlayers">
-                    </div>
-                </div>
-
-                <div class="form-group row text-sm-center">
+                <div class="form-group row text-sm-center justify-content-center">
                     <div class="col-sm-10">
-                        <button type="button" class="btn btn-primary" onclick="CheckInput()">Xác nhận</button>
-                    </div>
-                </div>
-
-                <input type="file" id="inputFile" disabled/><br>
-                <label id="notify" style="color: red;"></label><br>
-                <div id="statusTable"></div><br>
-                <div id="dtable"></div><br>
-                <script>
-                    let input = document.getElementById('inputFile');
-                    input.addEventListener('change', function () {
-                        readXlsxFile(input.files[0]).then(function(data) {
-                            if (checkListPlayer(data)===true){
-                                let league=document.getElementById('tournamentName').value;
-                                localStorage.setItem('league',league);
-                                localStorage.setItem('data',JSON.stringify(data));
-                            }
-                            document.getElementById('dtable').innerHTML = '<table border=1>' + data.map(row => '<tr>' + row.map(cell => `<td>${cell === null ? '' : cell}</td>`).join('') + '</tr>').join('') + '</table>'
-                        });
-                    });
-                </script>
-
-                <div class="form-group row text-sm-center">
-                    <div class="col-sm-10">
-                        <button id="createButton" type="button" class="btn btn-primary" onclick="location.href='/create_league'" Disable>Tạo giải đấu</button>
+                        <button id="createButton" type="button" class="btn btn-primary" onclick="location.href='/tournament_management'" Disable>Quản lý giải đấu</button>
                     </div>
                 </div>
             </form>
