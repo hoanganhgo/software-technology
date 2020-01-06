@@ -27,24 +27,14 @@
                         </tr>
                     </thead>
                     <tbody>
+                        <%listMatch.forEach(function (match) {%>
                         <tr>
                             <th scope="row">1</th>
-                            <td>League Cup 2019</td>
-                            <td><button type="button" class="btn btn-primary">Cập nhật</button></td>
+                                    <td><%= match.nameTournament%></td>
+                            <td><button type="button" class="btn btn-primary" onclick="location.href='<%=match.urlUpdate%>'">Cập nhật</button></td>
                             <td><button type="button" class="btn btn-warning">Xóa</button></td>
                         </tr>
-                        <tr>
-                            <th scope="row">2</th>
-                            <td>V-League Cup 2019</td>
-                            <td><button type="button" class="btn btn-primary">Cập nhật</button></td>
-                            <td><button type="button" class="btn btn-warning">Xóa</button></td>
-                        </tr>
-                        <tr>
-                            <th scope="row">3</th>
-                            <td>Cup Không Chuyên</td>
-                            <td><button type="button" class="btn btn-primary">Cập nhật</button></td>
-                            <td><button type="button" class="btn btn-warning">Xóa</button></td>
-                        </tr>
+                        <%})%>
                     </tbody>
                 </table>
             </div>

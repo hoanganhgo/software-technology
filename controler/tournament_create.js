@@ -1,7 +1,7 @@
 const database=require('../utils/db');
 const xlsx = require('node-xlsx');
 const Formidable = require('formidable');
-const util = require('util');
+
 exports.createTournament=(req,res,next)=>{
     res.render('tournament_create', {title: 'Quản lí giải đấu'});
 };
@@ -23,8 +23,8 @@ exports.createLeague = (req,res,next)=> {
         await database.execute(query);
 
         //Lấy mã giải đấu đã được phát sinh tự động
-        let Result= await database.execute("select MAX(MaGiaiDau) as id From GiaiDau;");
-        let ID_GiaiDau=Result[0].id;
+        let Result = await database.execute("select MAX(MaGiaiDau) as id From GiaiDau;");
+        let ID_GiaiDau = Result[0].id;
         let obj = xlsx.parse(files.UploadFile.path);
         console.log(obj[0]);
 

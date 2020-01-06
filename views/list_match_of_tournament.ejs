@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title><%= title%></title>
+    <% include elements/head_tag.html%>
+</head>
+
+<body>
+<%include elements/header.ejs%>
+
+<div class="container">
+    <div class="row">
+        <div class="col-lg-2">
+            <%include elements/menu.ejs%>
+        </div>
+        <div class="col-lg-10">
+            <div class="row justify-content-center">
+                <h2></h2>
+            </div>
+            <table style="border: black solid; width: 100%">
+                <thead>
+                <tr>
+                    <th scope="col" style="width: 10%">Mã trận</th>
+                    <th scope="col" style="width: 20%">Đội nhà</th>
+                    <th scope="col" style="width: 20%">Đội khách</th>
+                    <th scope="col" style="width: 10%">Tỷ số</th>
+                    <th scope="col" style="width: 15%">Sân</th>
+                    <th scope="col" style="width: 15%">Ngày thi đấu</th>
+                    <th scope="col" style="width: 10%">Cập nhật</th>
+                </tr>
+                </thead>
+
+                <tbody>
+                <%listMatch.forEach(function (match) {%>
+                    <tr>
+                        <td scope="col" style="width: 10%"><%=match.idMatch%></td>
+                        <td scope="col" style="width: 20%"><%=match.nameTeam1%></td>
+                        <td scope="col" style="width: 20%"><%=match.nameTeam2%></td>
+                        <td scope="col" style="width: 10%"><%=match.result%></td>
+                        <td scope="col" style="width: 15%"><%=match.stadium%></td>
+                        <td scope="col" style="width: 15%"><%=match.date%></td>
+                        <td scope="col" style="width: 10%">Cập nhật</td>
+                    </tr>
+                <%})%>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+
+
+<%include elements/footer.html%>
+</body>
+
+</html>
