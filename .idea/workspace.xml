@@ -8,6 +8,7 @@
       <change beforePath="$PROJECT_DIR$/controler/Home.js" beforeDir="false" afterPath="$PROJECT_DIR$/controler/Home.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/controler/tournament_create.js" beforeDir="false" afterPath="$PROJECT_DIR$/controler/tournament_create.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/routes/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/routes/index.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/views/create_League.ejs" beforeDir="false" afterPath="$PROJECT_DIR$/views/create_League.ejs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/views/elements/footer.html" beforeDir="false" afterPath="$PROJECT_DIR$/views/elements/footer.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/views/elements/head_tag.html" beforeDir="false" afterPath="$PROJECT_DIR$/views/elements/head_tag.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/views/elements/header.ejs" beforeDir="false" afterPath="$PROJECT_DIR$/views/elements/header.ejs" afterDir="false" />
@@ -37,6 +38,8 @@
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="javascript.nodejs.core.library.configured.version" value="12.13.0" />
     <property name="last_opened_file_path" value="E:/Web/GitHub/project_web/admin" />
+    <property name="javascript.nodejs.core.library.configured.version" value="12.11.0" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
     <property name="nodejs_interpreter_path" value="node" />
     <property name="nodejs_package_manager_path" value="npm" />
     <property name="restartRequiresConfirmation" value="false" />
@@ -90,6 +93,9 @@
       <workItem from="1577890398275" duration="7821000" />
       <workItem from="1577940522490" duration="6703000" />
       <workItem from="1578318433394" duration="9024000" />
+      <workItem from="1577956525669" duration="162000" />
+      <workItem from="1578285602906" duration="101000" />
+      <workItem from="1578323770162" duration="1753000" />
     </task>
     <servers />
   </component>
