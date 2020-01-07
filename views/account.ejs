@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title><%= title%></title>
+    <% include elements/head_tag.html%>
+    <script>
+        function saveUserName(username) {
+            localStorage.setItem("username", username);
+        }
+    </script>
+</head>
+
+<body <%if (typeof username!=="undefined"){%>onload="saveUserName('<%=username%>')"<%}%>>
+<%include elements/header.ejs%>
+<div class="container">
+    <div class="row">
+        <div class="col-lg-3">
+            <%include elements/menu.ejs%>
+        </div>
+            <img src="./images/welcome.png" style="height: 300px;align-content: center;"/>
+    </div>
+</div>
+<%include elements/footer.html%>
+</body>
+
+</html>

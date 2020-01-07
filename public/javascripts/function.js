@@ -182,3 +182,22 @@ function checkListPlayer(data) {
     return false;
 }
 
+function loadUserName() {
+    let username = localStorage.getItem("username");
+    if (username===null)
+    {
+        return;
+    }
+
+    document.getElementById("btnLogin").hidden=true;
+    document.getElementById("btnRegister").hidden=true;
+    document.getElementById("btnLogout").hidden=false;
+    document.getElementById("avatar").hidden=false;
+    document.getElementById("welcome").innerText="Xin chào "+username;
+}
+
+function logout() {
+    localStorage.removeItem("username");
+    location.href="/";
+}
+

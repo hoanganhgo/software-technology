@@ -1,6 +1,7 @@
 var express = require('express');
 const Home = require('../controler/Home');
 const tournament = require('../controler/tournament_create');
+const User=require('../controler/UserControler');
 const tournamentM = require("../models/Tournament.M");
 const matchM = require("../models/Match.M");
 const teamM = require("../models/Team.M");
@@ -15,10 +16,19 @@ router.get('/login', function (req, res, next) {
   res.render('login', { title: 'Đăng nhập' });
 });
 
+/*post info login*/
+router.post('/login', User.login);
+
 /*GET register page*/
 router.get('/register', function (req, res, next) {
   res.render('register', { title: 'Đăng ký' });
-})
+});
+
+/*Post form register*/
+router.post('/register', User.postRegister);
+
+router.get('/account', User.getAcount);
+
 
 /*GET ranking table page*/
 router.get('/ranking_table', function (req, res, next) {

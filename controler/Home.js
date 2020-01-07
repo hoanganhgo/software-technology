@@ -6,7 +6,7 @@ const tournamentM = require("../models/Tournament.M");
 
 exports.getHome = async (req, res, next) => {
     //Cập nhật tin tức các trận đấu
-    var list = await test.execute("select* from NguoiDung");
+    /*var list = await test.execute("select* from NguoiDung");
 
     const news_match = await matchM.ThreeMatchCurrently();
     let list_match = [];
@@ -32,15 +32,19 @@ exports.getHome = async (req, res, next) => {
         list_match.push(temp);
     }
 
-    console.log(list);
+    //console.log(list);
     res.render('index', {
         title: 'Trang chủ',
         matchs: list_match,
     });
 
     for(const item of list){
-        console.log(item.TenTaiKhoan);
-    }
+        //console.log(item.TenTaiKhoan);
+    }*/
 
     //console.log(list);
+    res.render('index', {
+        title: 'Trang chủ',
+        matchs: [],
+    });
 };

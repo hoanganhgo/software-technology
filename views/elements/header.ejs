@@ -3,11 +3,21 @@
         <a href="/"><img class="logo" src=".././images/logo.png"/></a>
         <form class="form-inline header-width">
             <button onclick="location.href='/'" class="btn btn-outline-success btn-header" type="button">Trang chủ</button>
-            <button onclick="location.href='login'" class="btn btn-outline-success btn-header" type="button">Đăng nhập</button>
-            <button onclick="location.href='register'" class="btn btn-outline-success btn-header" type="button">Đăng ký</button>
+            <%if (typeof username==="undefined"){%>
+                <button id="btnLogin" onclick="location.href='login'" class="btn btn-outline-success btn-header" type="button">Đăng nhập</button>
+                <button id="btnRegister" onclick="location.href='register'" class="btn btn-outline-success btn-header" type="button">Đăng ký</button>
+        <%}else{%>
+                <button onclick="logout()" class="btn btn-outline-success btn-header" type="button">Đăng xuất</button>
+            <%}%>
+            <button id="btnLogout" hidden onclick="logout()" class="btn btn-outline-success btn-header" type="button">Đăng xuất</button>
             <button onclick="location.href='ranking_table'" class="btn btn-outline-success btn-header" type="button">Bảng xếp hạng</button>
             <button onclick="location.href='goal_leader_list'" class="btn btn-outline-success btn-header" type="button">Vua phá lưới</button>
-            <button href="#" class="btn btn-outline-success btn-user" type="button"><img src=".././images/icon-person.png"/></button>
+            <%if (typeof username!=="undefined"){%>
+                <button onclick="location.href='/account'" class="btn btn-outline-success btn-user" type="button"><img src=".././images/icon-person.png"/></button>
+                 <b>Xin chào <%=username%></b>
+            <%}%>
+            <button id="avatar" hidden onclick="location.href='/account'" class="btn btn-outline-success btn-user" type="button"><img src=".././images/icon-person.png"/></button>
+            <b><p id="welcome"></p></b>
         </form>
     </nav>
 </div>

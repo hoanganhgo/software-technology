@@ -9,14 +9,16 @@
     <div class="card card-signin my-5">
         <div class="card-body">
             <h5 class="card-title text-center">Đăng nhập</h5>
-            <form class="form-signin">
+            <%if (typeof exist!=="undefined"){%><div style="color: red; font-size: 20px; text-align: center">Tài khoản không tồn tại</div><%}%>
+            <%if (typeof wrong!=="undefined"){%><div style="color: red; font-size: 20px; text-align: center">Sai mật khẩu</div><%}%>
+            <form class="form-signin" action="/login" method="post">
                 <div class="form-label-group">
-                    <input type="text" id="inputEmail" class="form-control" placeholder="Email address" required autofocus>
+                    <input type="text" name="userName" id="inputEmail" class="form-control" placeholder="Email address" required autofocus>
                     <label for="inputEmail">Tên tài khoản</label>
                 </div>
 
                 <div class="form-label-group">
-                    <input type="password" id="inputPassword" class="form-control" placeholder="Password" required>
+                    <input type="password" name="passWord" id="inputPassword" class="form-control" placeholder="Password" required>
                     <label for="inputPassword">Mật khẩu</label>
                 </div>
 
