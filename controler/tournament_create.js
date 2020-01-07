@@ -55,7 +55,7 @@ exports.createLeague = (req,res,next)=> {
 
             if (!isNaN(data[i][0]))
             {
-                query="INSERT INTO CauThu (HoTen,SoAo,NgaySinh,DoiBongThiDau,SoBanThang,GiaiDau) VALUES('"+data[i][1]+"','"+data[i][2]+"','"+data[i][3]+"','"+ID_DoiBong+"',0,'"+ID_GiaiDau+"');";
+                query="INSERT INTO CauThu (HoTen,SoAo,NgaySinh,DoiBongThiDau) VALUES('"+data[i][1]+"','"+data[i][2]+"','"+data[i][3]+"','"+ID_DoiBong+"');";
                 //console.log(query);
                 //Lưu ý ngày sinh tính theo từng ngày với ngày bắt đầu là 01/01/1900
                 await database.execute(query);
@@ -117,7 +117,7 @@ exports.createLeague = (req,res,next)=> {
             for (let j=0;j<round.length;j++)
             {
                 let place=GetPitch(team,pitch,round[j][0]);
-                query="INSERT INTO TranDau (DoiChuNha,DoiKhach,NgayThiDau,SanThiDau,DiemChuNha,DiemKhach,GiaiDau) VALUES ('"+round[j][0]+"','"+round[j][1]+"','"+StringTime+"','"+place+"',-1,-1,'"+ID_GiaiDau+"');";
+                query="INSERT INTO TranDau (DoiChuNha,DoiKhach,NgayThiDau,SanThiDau) VALUES ('"+round[j][0]+"','"+round[j][1]+"','"+StringTime+"','"+place+"');";
                 console.log(query);
                 await database.execute(query);
             }
@@ -133,7 +133,7 @@ exports.createLeague = (req,res,next)=> {
             for (let j=0;j<round.length;j++)
             {
                 let place=GetPitch(team,pitch,round[j][1]);
-                query="INSERT INTO TranDau (DoiChuNha,DoiKhach,NgayThiDau,SanThiDau,DiemChuNha,DiemKhach,GiaiDau) VALUES ('"+round[j][0]+"','"+round[j][1]+"','"+StringTime+"','"+place+"',-1,-1,'"+ID_GiaiDau+"');";
+                query="INSERT INTO TranDau (DoiChuNha,DoiKhach,NgayThiDau,SanThiDau) VALUES ('"+round[j][0]+"','"+round[j][1]+"','"+StringTime+"','"+place+"');";
                 console.log(query);
                 await database.execute(query);
             }

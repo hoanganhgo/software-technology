@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title><%= title%></title>
+    <% include elements/head_tag.html%>
+</head>
+
+<body>
+    <%include elements/header.ejs%>
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-3">
+                <%include elements/menu.ejs%>
+            </div>
+            <div class="col-lg-7">
+                <div class="row justify-content-center">
+                    <h2>Danh Sách Giải Đấu</h2>
+                </div>
+                <div class="row">
+                    <div class="col-xs-12"></div>
+                        <table class="table table-bordered">
+                            <thead>
+                                <tr>
+                                    <th class="col-xs-2">STT</th>
+                                    <th class="col-xs-2">ID</th>
+                                    <th class="col-xs-8">Tên Giải đấu</th>
+                                </tr>
+                            </thead>
+                            <% 
+                                for (var i = 0; i < list.length; i++){%>
+                                    <tbody>
+                                        <tr>
+                                            <td><%= i%></td>
+                                            <td><%= list[i].MaGiaiDau%></td>
+                                            <td><a href="/<%= list[i].MaGiaiDau%>/match_list"><%= list[i].TenGiaiDau%></a></td>
+                                        </tr>
+                                    </tbody>
+                                <%}
+                            %>
+
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <%include elements/footer.html%>
+</body>
+
+</html>
