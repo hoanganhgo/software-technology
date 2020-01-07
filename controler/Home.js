@@ -37,4 +37,10 @@ exports.getHome = async (req, res, next) => {
         title: 'Trang chủ',
         matchs: list_match,
     });
+
+    for(const item of list){
+        console.log(item.TenTaiKhoan);
+    }
+
+    //console.log(list);
 };

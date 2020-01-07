@@ -5,6 +5,7 @@ const tournamentM = require("../models/Tournament.M");
 const matchM = require("../models/Match.M");
 const teamM = require("../models/Team.M");
 var router = express.Router();
+const tournamentController = require('../controler/tournamentController');
 
 /* GET home page. */
 router.get('/', Home.getHome);
@@ -40,6 +41,11 @@ router.post('/create_league', tournament.createLeague);
 router.get('/tournament_management', function (req, res, next) {
   res.render('tournament_management', { title: 'Quản lí giải đấu' });
 });
+
+router.get('/tournament_management', tournamentController.tournamentManagement);
+
+router.get('/tournament_management/update', tournamentController.tournamentUpdate);
+
 
 /*GET match result update page*/
 router.get('/match_result_update', function (req, res, next) {
