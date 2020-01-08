@@ -182,3 +182,51 @@ function checkListPlayer(data) {
     return false;
 }
 
+
+function countGold(input) {
+    let countGold = 0;
+    let flag = -1;
+    for (let i = 0; i < input.length; i++) {
+        //Nếu không phải là số hoặc ký tự đặc biệt thì báo lỗi
+        if (isNaN(input[i]) && input[i] != ',' && input[i] != '-') {
+            alert("Loi")
+            break;
+        }
+
+        //Nếu là số hoặc những ký tự đặc biệt
+        //Nếu gặp ký tự đặc biệt thì tiến hành kiểm tra phía trước có khoảng trắng hay không (VD: "1-" là flag bật, " -" là flag tắt)
+        if(flag == -1){
+            if (input[i] == '-' && (i > 0)) {
+                if (input[i - 1] != ' ') {
+                    flag = i;
+                }
+            }
+        } else {
+            //Nếu không phải là ký tự đặc biệt, tiến hành kiểm tra cờ có bật hay không (cờ bật có nghĩa là đang ở đúng định dạng và có thể đếm bàn thằng)
+            //Nếu cờ đang bật nhưng có khoảng trắng đồng nghĩa có ký tự không hợp lệ xen
+            if ((input[i] == ' ' || input[i] == ',') && flag != -1 && (i > 0)) {
+                if (isNaN(input[i - 1]) == false) {
+                    countGold++;
+                }
+                flag = -1;
+            }
+        }
+    }
+
+
+    if (flag != -1 && flag >= 1 && ((flag + 1) < input.length)) {
+        if (isNaN(input[flag - 1]) == false && isNaN(input[flag + 1]) == false)
+            countGold++;
+    }
+
+    return countGold;
+}
+function updateTeamA() {
+    const input = document.getElementById("input-team-a").value;
+    document.getElementById("team-a").value = countGold(input);
+}
+
+function updateTeamB() {
+    const input = document.getElementById("input-team-b").value;
+    document.getElementById("team-b").value = countGold(input);
+}

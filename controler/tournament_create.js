@@ -33,35 +33,32 @@ exports.createLeague = (req,res,next)=> {
         let n=data.length;
         let ID_DoiBong=null;
 
-        for (let i=0;i<n;i++)
-        {
-            if (data[i].length===0)
-            {
+        for (let i=0;i<n;i++) {
+            if (data[i].length === 0) {
                 break;
             }
-            if (start){
+            if (start) {
                 //data[i][0] la ten doi bong
-                query="INSERT INTO DoiBong (TenDoiBong, GiaiDau) VALUES('"+data[i][0]+"','"+ID_GiaiDau+"');";
+                query = "INSERT INTO DoiBong (TenDoiBong, GiaiDau) VALUES('" + data[i][0] + "','" + ID_GiaiDau + "');";
                 //console.log(query);
                 await database.execute(query);
-                i=i+1;
-                start=false;
+                i = i + 1;
+                start = false;
 
                 //Lấy mã đội bóng đã được phát sinh tự động
-                let Result= await database.execute("select MAX(MaDoiBong) as id From DoiBong;");
-                ID_DoiBong=Result[0].id;
+                let Result = await database.execute("select MAX(MaDoiBong) as id From DoiBong;");
+                ID_DoiBong = Result[0].id;
                 continue;
             }
 
-            if (!isNaN(data[i][0]))
-            {
-                query="INSERT INTO CauThu (HoTen,SoAo,NgaySinh,DoiBongThiDau,SoBanThang,GiaiDau) VALUES('"+data[i][1]+"','"+data[i][2]+"','"+data[i][3]+"','"+ID_DoiBong+"',0,'"+ID_GiaiDau+"');";
+            if (!isNaN(data[i][0])) {
+                query = "INSERT INTO CauThu (HoTen,SoAo,NgaySinh,DoiBongThiDau,SoBanThang,GiaiDau) VALUES('" + data[i][1] + "','" + data[i][2] + "','" + data[i][3] + "','" + ID_DoiBong + "',0,'" + ID_GiaiDau + "');";
                 //console.log(query);
                 //Lưu ý ngày sinh tính theo từng ngày với ngày bắt đầu là 01/01/1900
                 await database.execute(query);
-            }else{
+            } else {
                 i--;
-                start=true;
+                start = true;
             }
         }
 

@@ -16,31 +16,36 @@
         </div>
         <div class="col-lg-10">
             <div class="row justify-content-center">
-                <h2></h2>
+                <h2>DANH SÁCH TRẬN ĐẤU CỦA GIẢI <%=nameTournament%></h2>
             </div>
             <table style="border: black solid; width: 100%">
                 <thead>
-                <tr>
-                    <th scope="col" style="width: 10%">Mã trận</th>
-                    <th scope="col" style="width: 20%">Đội nhà</th>
-                    <th scope="col" style="width: 20%">Đội khách</th>
-                    <th scope="col" style="width: 10%">Tỷ số</th>
-                    <th scope="col" style="width: 15%">Sân</th>
-                    <th scope="col" style="width: 15%">Ngày thi đấu</th>
-                    <th scope="col" style="width: 10%">Cập nhật</th>
+                <tr style="background: #4e555b; height: 40px; color: white">
+                    <th scope="col" style="width: 5%; text-align: center">Mã</th>
+                    <th scope="col" style="width: 20%; text-align: center">Đội nhà</th>
+                    <th scope="col" style="width: 20%; text-align: center">Đội khách</th>
+                    <th scope="col" style="width: 10%; text-align: center">Tỷ số</th>
+                    <th scope="col" style="width: 20%; text-align: center">Sân</th>
+                    <th scope="col" style="width: 15%; text-align: center">Ngày thi đấu</th>
+                    <th scope="col" style="width: 10%; text-align: center">Cập nhật</th>
                 </tr>
                 </thead>
 
                 <tbody>
                 <%listMatch.forEach(function (match) {%>
                     <tr>
-                        <td scope="col" style="width: 10%"><%=match.idMatch%></td>
-                        <td scope="col" style="width: 20%"><%=match.nameTeam1%></td>
-                        <td scope="col" style="width: 20%"><%=match.nameTeam2%></td>
-                        <td scope="col" style="width: 10%"><%=match.result%></td>
-                        <td scope="col" style="width: 15%"><%=match.stadium%></td>
-                        <td scope="col" style="width: 15%"><%=match.date%></td>
-                        <td scope="col" style="width: 10%">Cập nhật</td>
+                        <td scope="col" style="width: 5%; text-align: center; background: #bec2c6"><%=match.idMatch%></td>
+                        <td scope="col" style="width: 20%; text-align: center"><%=match.nameTeam1%></td>
+                        <td scope="col" style="width: 20%; text-align: center"><%=match.nameTeam2%></td>
+                        <td scope="col" style="width: 10%; text-align: center; background: #bec2c6"><%=match.result%></td>
+                        <td scope="col" style="width: 20%; text-align: center"><%=match.stadium%></td>
+                        <td scope="col" style="width: 15%; text-align: center; background: #bec2c6"><%=match.date%></td>
+                        <%if(match.urlUpdate !== ""){%>
+                        <td scope="col" style="width: 10%; text-align: center;"><i><a href="<%=match.urlUpdate%>">Cập nhật</a></i></td>
+                        <%}else{%>
+                        <td scope="col" style="width: 10%; color: red; text-align: center">Đã cập nhật</td>
+                        <%}%>
+
                     </tr>
                 <%})%>
                 </tbody>

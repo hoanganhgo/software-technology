@@ -39,6 +39,9 @@ router.get('/tournament_management', tournamentController.tournamentManagement);
 
 router.get('/tournament_management/update', tournamentController.tournamentUpdate);
 
+router.get('/tournament_management/match', tournamentController.getTournamentUpdateMatch);
+router.post('/tournament_management/match', tournamentController.postTournamentUpdateMatch);
+
 /*GET match result update page*/
 router.get('/match_result_update', function(req, res, next){
   res.render('match_result_update', {title: 'Cập nhật tỷ số'});

@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Cập nhật tỷ số trận đấu</title>
+    <% include elements/head_tag.html%>
+</head>
+
+<body>
+<%include elements/header.ejs%>
+
+<div class="container">
+    <div class="row">
+        <div class="col-lg-2">
+            <%include elements/menu.ejs%>
+        </div>
+        <div class="col-lg-8" style="background: #a3ce5c; border-radius: 5px; margin: 10px">
+            <div class="row justify-content-center">
+                <h2></h2>
+            </div>
+
+            <form name="form-input" id="form-input" style="width: 100%; text-align: center" method="post">
+                <div style="font-size: x-large">
+                    CẬP NHẬT TỶ SỐ GIẢI ĐẤU <%=data.nameTournament%>
+                    <input name="idtournament" value="<%=data.idTournament%>" type="number" style="display: none">
+                </div>
+
+                <br>
+                <div>
+                    <label for="idmatch">Mã trận: </label>
+                    <input name="idmatch" value="<%=data.idMatch%>" style="width: 50px; text-align: center; border-radius: 3px; border: black solid 1px" readonly>
+
+                </div>
+                <div>
+                    <label for="idmatch">Ngày thi đấu: </label>
+                    <input value="<%=data.date%>" style="width: 100px; text-align: center; border-radius: 3px; border: black solid 1px" readonly>
+                </div>
+                <br>
+                <div style="width: 100%;">
+                    <div style="display: inline; width: 49%; float: left; text-align: right">
+                        <label for="team-a"><%=data.nameTeam1%></label>
+                        <input name="idteam1" value="<%=data.idTeam1%>" type="number" style="display: none">
+                        <input id="team-a" style="width: 20px; text-align: center; border-radius: 3px; border: black solid 1px" value="0" readonly>
+                    </div>
+
+                    <div style="display: inline;  width: 49%; float: right;text-align: left">
+                        <input id="team-b" style="width: 20px; text-align: center; border-radius: 3px; border: black solid 1px" value="0" readonly>
+                        <input name="idteam2" value="<%=data.idTeam2%>" type="number" style="display: none">
+                        <label for="team-b"><%=data.nameTeam2%></label>
+                    </div>
+                </div>
+
+
+                <br><br>
+                <div id="input-gold">
+                    <label for="input-gold">Cầu thủ ghi bàn</label>
+                    <div>
+                        <div style="display: inline">
+                            <input name="goldteam1" id="input-team-a" style="height: 100px; border-radius: 3px; border: black solid 1px" placeholder="số áo-phút ghi bàn" type="text" onchange="updateTeamA()">
+                        </div>
+
+                        <div style="display: inline">
+                            <input name="goldteam2" id="input-team-b" style="height: 100px; border-radius: 3px; border: black solid 1px" placeholder="số áo-phút ghi bàn" type="text" onchange="updateTeamB()">
+                        </div>
+                    </div>
+                </div>
+                <br>
+                <input type="submit" value="Cập nhật" class="submit" onclick="f()" style="border: black solid 1px; border-radius: 3px; background: #0f6674; color: white">
+                <a href="<%=data.urlCancel%>">Hủy</a>
+            </form>
+            <br>
+        </div>
+    </div>
+</div>
+
+
+<%include elements/footer.html%>
+</body>
+
+</html>
