@@ -9,11 +9,13 @@
     <div class="card card-signin my-5">
         <div class="card-body">
             <h5 class="card-title text-center">Đăng ký</h5>
-            <form class="form-signin">
-                    <input type="text" id="inputEmail" class="form-control" placeholder="Tên Tài khoản" required autofocus><br>
-                    <input type="password" id="inputPassword" class="form-control" placeholder="Mật khẩu" required><br>
-                    <input type="password" id="inputEmail" class="form-control" placeholder="Nhập lại mật khẩu" required autofocus><br>
-                    <input type="email" id="inputEmail" class="form-control" placeholder="Địa chỉ Email" required autofocus><br>
+            <%if (typeof exist!=="undefined"){%><div style="color: red; font-size: 25px">Tên tài khoản đã tồn tại</div><%}%>
+            <form class="form-signin" action="/register" method="post">
+                <input type="text" id="inputName" name="name" class="form-control" placeholder="Nhập họ tên" required autofocus><br>
+                <input type="email" id="inputEmail" name="email" class="form-control" placeholder="Địa chỉ Email" required autofocus><br>
+                <input type="date" id="inputDate" name="dateOfBirth" class="form-control" placeholder="Nhập ngày sinh" required autofocus><br>
+                <input type="text" id="inputUsername" name="userName" name="" class="form-control" placeholder="Tên Tài khoản" required autofocus><br>
+                <input type="password" id="inputPassword" name="passWord" class="form-control" placeholder="Mật khẩu" required><br>
 
                 <div class="custom-control custom-checkbox mb-3">
                     <input type="checkbox" class="custom-control-input" id="customCheck1">

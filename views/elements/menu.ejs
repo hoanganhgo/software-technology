@@ -3,9 +3,18 @@
         <h2>Menu</h2>
     </li>
     <li class="nav-item">
-        <button onclick="location.href='tournament_create'" class="btn btn-outline-primary btn-menu" type="button">Tạo giải đấu mới</button>
+        <button onclick="location.href='tournament_create'" class="btn btn-outline-primary btn-menu" type="button">Tạo
+            Giải Đấu Mới</button>
     </li>
     <li class="nav-item">
+        <button onclick="location.href='tournament_management'" class="btn btn-outline-primary btn-menu"
+            type="button">Quản Lý Giải Đấu</button>
+    </li>
+    <li class="nav-item">
+        <form action="/tournament_list" method="GET">
+            <button  class="btn btn-outline-primary btn-menu"
+                type="submit">Danh Sách Giải Đấu</button>
+        </form>
         <button onclick="location.href='tournament_management?username=hoanganh'" class="btn btn-outline-primary btn-menu" type="button">Quản lý giải đấu</button>
     </li>
 </ul>

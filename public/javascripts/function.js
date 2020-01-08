@@ -182,7 +182,6 @@ function checkListPlayer(data) {
     return false;
 }
 
-
 function countGold(input) {
     let countGold = 0;
     let flag = -1;
@@ -230,3 +229,22 @@ function updateTeamB() {
     const input = document.getElementById("input-team-b").value;
     document.getElementById("team-b").value = countGold(input);
 }
+function loadUserName() {
+    let username = localStorage.getItem("username");
+    if (username===null)
+    {
+        return;
+    }
+
+    document.getElementById("btnLogin").hidden=true;
+    document.getElementById("btnRegister").hidden=true;
+    document.getElementById("btnLogout").hidden=false;
+    document.getElementById("avatar").hidden=false;
+    document.getElementById("welcome").innerText="Xin chào "+username;
+}
+
+function logout() {
+    localStorage.removeItem("username");
+    location.href="/";
+}
+

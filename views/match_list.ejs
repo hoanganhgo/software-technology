@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title><%= title%></title>
+    <% include elements/head_tag.html%>
+</head>
+
+<body onload="loadUserName()">
+    <%include elements/header.ejs%>
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-3">
+                <%include elements/menu.ejs%>
+            </div>
+            <div class="col-lg-7">
+                <div class="row justify-content-center">
+                    <h2>Danh Sách Trận Đấu của <%= tournament.TenGiaiDau%></h2>
+                </div>
+                <div class="row">
+                    <div class="col-xs-12"></div>
+                        <table class="table table-bordered">
+                            <thead>
+                                <tr>
+                                    <th class="">STT</th>
+                                    <th class="">Đội chủ nhà</th>
+                                    <th class="">Đội khách</th>
+                                    <th class="">Ngày thi đấu</th>
+                                    <th class="">Sân Thi Đấu</th>
+                                </tr>
+                            </thead>
+                            <% 
+                                for (var i = 0; i < list.length; i++){%>
+                                    <tbody>
+                                        <tr>
+                                            <td><%= i%></td>
+                                            <td><%= list[i].TenChuNha%></td>
+                                            <td><%= list[i].TenKhach%></td>
+                                            <td><%= list[i].NgayThiDauDate%></td>
+                                            <td><%= list[i].SanThiDau%></td>
+                                        </tr>
+                                    </tbody>
+                                <%}
+                            %>
+
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <%include elements/footer.html%>
+</body>
+
+</html>
