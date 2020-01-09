@@ -60,14 +60,7 @@ router.get('/match_result_update', function (req, res, next) {
   res.render('match_result_update', { title: 'Cập nhật tỷ số' });
 });
 
-router.get('/tournament_list', async function (req, res, next) {
-  const list = await tournamentM.GetAll();
-
-  res.render('tournament_list', {
-    list: list,
-    title: 'Danh sách giải đấu'
-  });
-});
+router.get('/tournament_list', tournamentController.tournament_list);
 
 router.get('/:id/match_list', async function (req, res, next) {
     const id = parseInt(req.params.id);

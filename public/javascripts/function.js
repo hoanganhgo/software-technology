@@ -68,6 +68,12 @@ function checkListPlayer(data) {
     let i=0;
     let start=true;
 
+    if (NumberOfTeams%2!==0)
+    {
+        document.getElementById("teamQuantity").focus();
+        alert("Số đội tham dự phải là số chẵn");
+    }
+
     for (i=0;i<n;i++)
     {
         if (start)
@@ -230,8 +236,9 @@ function updateTeamB() {
     document.getElementById("team-b").value = countGold(input);
 }
 function loadUserName() {
-    let username = localStorage.getItem("username");
-    if (username===null)
+    let name = localStorage.getItem("name");
+    let username=localStorage.getItem("username");
+    if (name===null)
     {
         return;
     }
@@ -240,11 +247,26 @@ function loadUserName() {
     document.getElementById("btnRegister").hidden=true;
     document.getElementById("btnLogout").hidden=false;
     document.getElementById("avatar").hidden=false;
-    document.getElementById("welcome").innerText="Xin chào "+username;
+    document.getElementById("welcome").innerText="Xin chào "+name;
+    document.getElementById("tournament_create").onclick= function () {
+        location.href='/tournament_create';
+    };
+    document.getElementById("tournament_list").onclick= function () {
+        location.href='/tournament_list?username='+username;
+    };
+    document.getElementById("tournament_management").onclick= function () {
+        location.href='/tournament_management?username='+username;
+    };
+    document.getElementById("avatar").onclick= function () {
+        location.href='/account?username='+username+"&name="+name;
+    };
+
+    document.getElementById("username").value=username;
 }
 
 function logout() {
     localStorage.removeItem("username");
+    localStorage.removeItem("name");
     location.href="/";
 }
 

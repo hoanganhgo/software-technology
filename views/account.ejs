@@ -5,13 +5,24 @@
     <title><%= title%></title>
     <% include elements/head_tag.html%>
     <script>
-        function saveUserName(username) {
+        function saveUserName(username, name) {
             localStorage.setItem("username", username);
+            localStorage.setItem("name", name);
+
+            document.getElementById("tournament_create").onclick= function () {
+                location.href='/tournament_create';
+            };
+            document.getElementById("tournament_list").onclick= function () {
+                location.href='/tournament_list';
+            };
+            document.getElementById("tournament_management").onclick= function () {
+                location.href='/tournament_management?username='+username;
+            };
         }
     </script>
 </head>
 
-<body <%if (typeof username!=="undefined"){%>onload="saveUserName('<%=username%>')"<%}%>>
+<body <%if (typeof username!=="undefined"){%>onload="saveUserName('<%=username%>', '<%=name%>')"<%}%>>
 <%include elements/header.ejs%>
 <div class="container">
     <div class="row">

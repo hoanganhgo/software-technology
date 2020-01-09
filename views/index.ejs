@@ -21,8 +21,9 @@
         <ul>
           <% 
               for (var i = 0; i < matchs.length; i++){%>
-                  <li><a href="#"><%= matchs[i].Tournament%> : <%= matchs[i].HomeTeam %> vs <%= matchs[i].GuestTeam %> : <%= matchs[i].HomeGoal %> -  <%= matchs[i].GuestGoal %> (<%= matchs[i].Date%>)</a></li>
-              <%}
+<!--                  <li><a href="#"><%= matchs[i].Tournament%> : <%= matchs[i].HomeTeam %> vs <%= matchs[i].GuestTeam %> : <%= matchs[i].HomeGoal %> -  <%= matchs[i].GuestGoal %> (<%= matchs[i].Date%>)</a></li>-->
+                  <li style="width: 1000px"><a href="#"><%=matchs[i]%></a></li>
+            <%}
           %>
         </ul>       
       </div>

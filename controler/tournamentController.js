@@ -1,4 +1,5 @@
 //const util = require('utils');
+const tournamentM = require("../models/Tournament.M");
 const database = require('../utils/db');
 const helper = require('../services/helperService');
 
@@ -150,4 +151,18 @@ exports.postTournamentUpdateMatch = async (req, res, next) => {
 
 
     res.redirect('/tournament_management/update?id=' + idtournament);
+};
+
+exports.tournament_list=async (req,res,next)=>
+{
+    const username=req.query.username;
+    console.log(username);
+     //const list = [];
+    let query="SELECT * FROM GiaiDau WHERE QuanLy='"+username+"';";
+    let list= await database.execute(query);
+
+    res.render('tournament_list', {
+        list: list,
+        title: 'Danh sách giải đấu'
+    });
 };
