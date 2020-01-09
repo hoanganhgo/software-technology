@@ -2,7 +2,10 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="2215990c-bb75-4bf2-b43d-56cbfef78748" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/views/elements/header.ejs" beforeDir="false" afterPath="$PROJECT_DIR$/views/elements/header.ejs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/controler/Home.js" beforeDir="false" afterPath="$PROJECT_DIR$/controler/Home.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/controler/tournament_create.js" beforeDir="false" afterPath="$PROJECT_DIR$/controler/tournament_create.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/utils/db.js" beforeDir="false" afterPath="$PROJECT_DIR$/utils/db.js" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -25,8 +28,8 @@
   <component name="PropertiesComponent">
     <property name="DefaultHtmlFileTemplate" value="HTML File" />
     <property name="WebServerToolWindowFactoryState" value="false" />
-    <property name="javascript.nodejs.core.library.configured.version" value="12.13.0" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
+    <property name="javascript.nodejs.core.library.configured.version" value="12.11.0" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/../software-technology123" />
     <property name="nodejs_interpreter_path" value="node" />
     <property name="nodejs_package_manager_path" value="npm" />
     <property name="restartRequiresConfirmation" value="false" />
@@ -88,6 +91,7 @@
       <workItem from="1578388294962" duration="10792000" />
       <workItem from="1578566365933" duration="600000" />
       <workItem from="1578570340448" duration="205000" />
+      <workItem from="1578575183131" duration="1506000" />
     </task>
     <servers />
   </component>
