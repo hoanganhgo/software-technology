@@ -48,10 +48,6 @@ router.get('/tournament_create', tournament.createTournament);
 router.post('/create_league', tournament.createLeague);
 
 /*GET tournament management page*/
-router.get('/tournament_management', function (req, res, next) {
-  res.render('tournament_management', { title: 'Quản lí giải đấu' });
-});
-
 router.get('/tournament_management', tournamentController.tournamentManagement);
 
 router.get('/tournament_management/update', tournamentController.tournamentUpdate);

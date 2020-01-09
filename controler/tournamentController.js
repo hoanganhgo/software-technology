@@ -31,8 +31,6 @@ exports.tournamentManagement = async (req, res, next) => {
             listTournamentForView.push(newItem);
         }
 
-
-
         //res.send(listTournamentForView);
         res.render('tournament_management', {title: 'Quản lí giải đấu', listMatch: listTournamentForView});
     }
