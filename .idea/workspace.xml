@@ -2,23 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="2215990c-bb75-4bf2-b43d-56cbfef78748" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/views/list_tournament_for_ranking_player.ejs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/controler/Home.js" beforeDir="false" afterPath="$PROJECT_DIR$/controler/Home.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/controler/UserControler.js" beforeDir="false" afterPath="$PROJECT_DIR$/controler/UserControler.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/controler/tournamentController.js" beforeDir="false" afterPath="$PROJECT_DIR$/controler/tournamentController.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/javascripts/function.js" beforeDir="false" afterPath="$PROJECT_DIR$/public/javascripts/function.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/routes/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/routes/index.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/services/helperService.js" beforeDir="false" afterPath="$PROJECT_DIR$/services/helperService.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/views/account.ejs" beforeDir="false" afterPath="$PROJECT_DIR$/views/account.ejs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/views/elements/header.ejs" beforeDir="false" afterPath="$PROJECT_DIR$/views/elements/header.ejs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/views/elements/menu.ejs" beforeDir="false" afterPath="$PROJECT_DIR$/views/elements/menu.ejs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/views/goal_leader_list.ejs" beforeDir="false" afterPath="$PROJECT_DIR$/views/goal_leader_list.ejs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/views/index.ejs" beforeDir="false" afterPath="$PROJECT_DIR$/views/index.ejs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/views/list_match_of_tournament.ejs" beforeDir="false" afterPath="$PROJECT_DIR$/views/list_match_of_tournament.ejs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/views/ranking_table.ejs" beforeDir="false" afterPath="$PROJECT_DIR$/views/ranking_table.ejs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/views/tournament_create.ejs" beforeDir="false" afterPath="$PROJECT_DIR$/views/tournament_create.ejs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/views/update_result_match.ejs" beforeDir="false" afterPath="$PROJECT_DIR$/views/update_result_match.ejs" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
