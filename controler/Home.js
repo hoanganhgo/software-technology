@@ -44,7 +44,7 @@ exports.getHome = async (req, res, next) => {
     let TranDau = await Database.execute(query);
     let list_match=[];
 
-    for (let i=0;i<TranDau.length;i++)
+    for (let i=TranDau.length-1;i>=0;i--)
     {
         query="SELECT TenGiaiDau FROM GiaiDau WHERE MaGiaiDau='"+TranDau[i].GiaiDau+"';";
         let TenGiaiDau=await Database.execute(query);
