@@ -189,12 +189,14 @@ function checkListPlayer(data) {
 }
 
 function countGold(input) {
+    document.getElementById("error-noti").innerText="";
     let countGold = 0;
     let flag = -1;
     for (let i = 0; i < input.length; i++) {
         //Nếu không phải là số hoặc ký tự đặc biệt thì báo lỗi
         if (isNaN(input[i]) && input[i] != ',' && input[i] != '-') {
-            alert("Loi")
+            alert("Lỗi định dạng");
+            document.getElementById("error-noti").innerText= "Lỗi định dạng !! Xin hãy kiểm tra lại.";
             break;
         }
 
@@ -218,11 +220,11 @@ function countGold(input) {
         }
     }
 
-
     if (flag != -1 && flag >= 1 && ((flag + 1) < input.length)) {
         if (isNaN(input[flag - 1]) == false && isNaN(input[flag + 1]) == false)
             countGold++;
     }
+
 
     return countGold;
 }
@@ -251,9 +253,6 @@ function loadUserName() {
     document.getElementById("tournament_create").onclick= function () {
         location.href='/tournament_create';
     };
-    document.getElementById("tournament_list").onclick= function () {
-        location.href='/tournament_list?username='+username;
-    };
     document.getElementById("tournament_management").onclick= function () {
         location.href='/tournament_management?username='+username;
     };
@@ -268,5 +267,38 @@ function logout() {
     localStorage.removeItem("username");
     localStorage.removeItem("name");
     location.href="/";
+}
+
+function checkForm() {
+    const inputTeamA = document.getElementById("input-team-a").value;
+    const inputTeamB = document.getElementById("input-team-b").value;
+
+    let error = false;
+    for (let i = 0; i < inputTeamA.length; i++) {
+        //Nếu không phải là số hoặc ký tự đặc biệt thì báo lỗi
+        if (isNaN(inputTeamA[i]) && inputTeamA[i] != ',' && inputTeamA[i] != '-') {
+            alert("Lỗi định dạng")
+            document.getElementById("error-noti").innerText= "Lỗi định dạng !! Xin hãy kiểm tra lại.";
+            error = true;
+            break;
+        }
+    }
+
+    if(!error){
+        for (let i = 0; i < inputTeamB.length; i++) {
+            //Nếu không phải là số hoặc ký tự đặc biệt thì báo lỗi
+            if (isNaN(inputTeamB[i]) && inputTeamB[i] != ',' && inputTeamB[i] != '-') {
+                alert("Lỗi định dạng")
+                document.getElementById("error-noti").innerText= "Lỗi định dạng !! Xin hãy kiểm tra lại.";
+                error = true;
+                break;
+            }
+        }
+    }
+
+    if(!error){
+        document.getElementById("form-input").submit();
+    }
+
 }
 

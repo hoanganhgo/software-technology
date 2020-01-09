@@ -81,6 +81,7 @@ exports.tournamentUpdate = async (req, res, next) => {
 };
 
 exports.getTournamentUpdateMatch = async (req, res, next) => {
+
     //Lấy id của trận đấu
     const idMatch = req.query.updateMatch;
 
@@ -126,34 +127,53 @@ exports.postTournamentUpdateMatch = async (req, res, next) => {
     // - Thêm các bàn thắng vào bảng BanThang
     // - Cập nhật số bàn thắng của cầu thủ trong bảng CauThu
 
-
-    const {idtournament, idmatch, idteam1, idteam2, goldteam1, goldteam2} = req.body;
+    const {idtournament, idmatch, idteam1, idteam2, goalTeam1, goalTeam2} = req.body;
 
     //Bóc tách chuỗi để tạo ra danh sách bàn thắng
-    const listPlayerTeamA = helper.countGold(goldteam1);
-    const listPlayerTeamB = helper.countGold(goldteam2);
+    const listPlayerTeamA = helper.countGold(goalTeam1);
+    const listPlayerTeamB = helper.countGold(goalTeam2);
 
-    //Cập nhật tỷ số trận đấu cho bảng TranDau
-    const queryUpdateTableTranDau = "UPDATE TranDau SET DiemChuNha = " +listPlayerTeamA.length + ", " +
-        "DiemKhach = " + listPlayerTeamB.length + " WHERE MaTranDau = " + idmatch + "; ";
-    database.execute(queryUpdateTableTranDau);
+    let error = false;
 
-    //Cập nhật số bàn thắng cho cầu thủ
-    //Thêm bàn thắng vào bảng BanThang
-    helper.upDateResultOfMatch(listPlayerTeamA, idteam1, idteam2, idmatch);
-    helper.upDateResultOfMatch(listPlayerTeamB, idteam2, idteam1, idmatch);
+    //Kiểm tra tính hợp lệ của cầu thủ
+    for(const player of listPlayerTeamA){
+        if(await helper.checkPlayerIsExist(player.number, idteam1) == false)
+        {
+            res.redirect("/tournament_management/match?updateMatch=" + idmatch);
+            error = true;
+            break;
+        }
+    }
 
+    if(!error){
+        for(const player of listPlayerTeamB){
+            if(await helper.checkPlayerIsExist(player.number, idteam2) == false)
+            {
+                res.redirect("/tournament_management/match?updateMatch=" + idmatch);
+                error = true;
+                break;
+            }
+        }
+    }
 
-    res.redirect('/tournament_management/update?id=' + idtournament);
+    if(!error){
+        //Cập nhật tỷ số trận đấu cho bảng TranDau
+        const queryUpdateTableTranDau = "UPDATE TranDau SET DiemChuNha = " +listPlayerTeamA.length + ", " +
+            "DiemKhach = " + listPlayerTeamB.length + " WHERE MaTranDau = " + idmatch + "; ";
+        database.execute(queryUpdateTableTranDau);
+
+        //Cập nhật số bàn thắng cho cầu thủ
+        //Thêm bàn thắng vào bảng BanThang
+        helper.upDateResultOfMatch(listPlayerTeamA, idteam1, idteam2, idmatch);
+        helper.upDateResultOfMatch(listPlayerTeamB, idteam2, idteam1, idmatch);
+
+        res.redirect('/tournament_management/update?id=' + idtournament);
+    }
 };
 
 exports.tournament_list=async (req,res,next)=>
 {
-    const username=req.query.username;
-    console.log(username);
-     //const list = [];
-    let query="SELECT * FROM GiaiDau WHERE QuanLy='"+username+"';";
-    let list= await database.execute(query);
+    let list= await tournamentM.GetAll();
 
     res.render('tournament_list', {
         list: list,
@@ -166,13 +186,158 @@ exports.getRankingTable = async (req, res, next) =>{
 
     if(typeof idTournament !== "undefined"){
         const listMatch = await helper.getAllMatchPlayedByIdTournament(idTournament);
-        res.send(listMatch);
+        const listTeam = await helper.getAllTeamByIdTournament(idTournament)
 
-        //res.render('ranking_table', { title: 'Bảng xếp hạng' });
+        const ranking = [];
+        for(const team of listTeam){
+            const nameTeam = team.TenDoiBong;
+            const idTeam = team.MaDoiBong;
+            const numberMatchPlayed = 0;
+            const numberMatchWin = 0;
+            const numberMatchLose = 0;
+            const numberMatchDraw = 0;
+            const numberOfGoal = 0;
+            const numberOfGoalConceded = 0;
+            const numberGoalsDifferent = 0;
+            const totalScore = 0;
+
+            const newItem = {
+                nameTeam, idTeam, numberMatchPlayed, numberMatchWin, numberMatchLose,
+                numberMatchDraw, numberOfGoal, numberOfGoalConceded, numberGoalsDifferent, totalScore };
+            ranking.push(newItem);
+        }
+
+        for(const match of listMatch) {
+            const goalsTeam1 = match.DiemChuNha;
+            const goalsTeam2 = match.DiemKhach;
+            const idTeam1 = match.DoiChuNha;
+            const idTeam2 = match.DoiKhach;
+
+            //Kết quả của trận đấu sẽ có 3 trạng thái: 0, 1, 2
+            //0: 2 đội hòa
+            //1: đội 1 thắng
+            //2: đội 2 thắng
+            let resultOfMatch = 0;
+
+            if (goalsTeam1 > goalsTeam2) {
+                resultOfMatch = 1;
+            } else {
+                if (goalsTeam1 < goalsTeam2) {
+                    resultOfMatch = 2;
+                }
+            }
+
+            for (const team of ranking) {
+                //Nếu là đội 1 thì tiến hành cập nhật
+                if (team.idTeam == idTeam1) {
+                    //Cập nhật số trận đã đá
+                    team.numberMatchPlayed++;
+                    //Cập nhật bàn thắng, bàn thua, hiệu số
+                    team.numberOfGoal += goalsTeam1;
+                    team.numberOfGoalConceded += goalsTeam2;
+                    team.numberGoalsDifferent += (goalsTeam1 - goalsTeam2);
+
+                    switch (resultOfMatch) {
+                        case 0:
+                            team.numberMatchDraw++;
+                            team.totalScore += 1;
+                            break;
+                        case 1:
+                            team.numberMatchWin++;
+                            team.totalScore += 3;
+                            break;
+                        case 2:
+                            team.numberMatchLose++;
+                            break;
+                    }
+                }
+
+                //Nếu là đội 2 thì tiến hành cập nhật
+                if (team.idTeam == idTeam2) {
+                    team.numberMatchPlayed++;
+                    //Cập nhật bàn thắng, bàn thua, hiệu số
+                    team.numberOfGoal += goalsTeam2;
+                    team.numberOfGoalConceded += goalsTeam1;
+                    team.numberGoalsDifferent += (goalsTeam2 - goalsTeam1);
+
+                    switch (resultOfMatch) {
+                        case 0:
+                            team.numberMatchDraw++;
+                            team.totalScore += 1;
+                            break;
+                        case 1:
+                            team.numberMatchLose++;
+                            break;
+                        case 2:
+                            team.numberMatchWin++;
+                            team.totalScore += 3;
+                            break;
+                    }
+                }
+            }
+        }
+
+
+        ranking.sort(function (a, b) {
+            return b.totalScore - a.totalScore;
+        });
+
+        let listTeamEqualScore = [];
+        let arrLocation = [];
+        let scoreCur = 0;
+
+        //Kiểm tra danh sách các đội có cùng điểm với nhau để xét thêm hiệu số
+        for(let i = 0; i <ranking.length; i++) {
+            if (scoreCur != ranking[i].totalScore) {
+                if (listTeamEqualScore.length > 1) {
+                    listTeamEqualScore.sort(function (a, b) {
+                        return b.numberGoalsDifferent - a.numberGoalsDifferent;
+                    });
+
+                    for (let index = 0; index < arrLocation.length; index++) {
+                        ranking[arrLocation[index]] = listTeamEqualScore[index];
+                    }
+                }
+                listTeamEqualScore = [];
+                arrLocation = [];
+            }
+
+            scoreCur = ranking[i].totalScore;
+            listTeamEqualScore.push(ranking[i]);
+            arrLocation.push(i);
+        }
+
+        let goalCur = 0;
+        scoreCur = 0;
+        listTeamEqualScore = [];
+        arrLocation = [];
+
+        //Tiến hành sắp xếp các vị trí có cùng điểm và cùng hiệu số (T-T)
+        for(let i = 0; i < ranking.length; i++) {
+            if (scoreCur != ranking[i].totalScore || goalCur != ranking[i].numberGoalsDifferent) {
+                if (listTeamEqualScore.length > 1) {
+                    listTeamEqualScore.sort(function (a, b) {
+                        return b.numberOfGoal - a.numberOfGoal;
+                    });
+
+                    for (let index = 0; index < arrLocation.length; index++) {
+                        ranking[arrLocation[index]] = listTeamEqualScore[index];
+                    }
+                }
+                listTeamEqualScore = [];
+                arrLocation = [];
+            }
+
+            scoreCur = ranking[i].totalScore;
+            goalCur = ranking[i].numberGoalsDifferent;
+            listTeamEqualScore.push(ranking[i]);
+            arrLocation.push(i);
+        }
+
+        res.render('ranking_table', { title: 'Bảng xếp hạng', listTeam: ranking });
     }else{
         const listTournament = await helper.getAllTournamentOnDB("");
         const listTournamentForView = [];
-
 
         for(let i = 0; i< listTournament.length; i++){
             const stt = i + 1;
@@ -183,7 +348,35 @@ exports.getRankingTable = async (req, res, next) =>{
             listTournamentForView.push(newItem);
         }
 
-        //res.send(listTournamentForView);
         res.render('list_tournament_for_ranking', { title: 'Bảng xếp hạng', listTournament: listTournamentForView });
     }
-}
+};
+
+exports.getRankingPlayer = async (req, res, next) => {
+    const idTournament = req.query.idTournament;
+
+    if(typeof idTournament !== "undefined"){
+        const list = await helper.getAllPlayerByIdTournament(idTournament);
+
+        list.sort(function (a, b) {
+            return b.SoBanThang - a.SoBanThang;
+        });
+
+        res.render('goal_leader_list', { title: 'Vua phá lưới', list: list });
+    }else{
+        const listTournament = await helper.getAllTournamentOnDB("");
+        const listTournamentForView = [];
+
+        for(let i = 0; i< listTournament.length; i++){
+            const stt = i + 1;
+            const nameTournament = listTournament[i].TenGiaiDau;
+            const urlRanking = "goal_leader_list?idTournament=" + listTournament[i].MaGiaiDau;
+
+            const newItem = { stt, nameTournament, urlRanking };
+            listTournamentForView.push(newItem);
+        }
+
+        //res.send(listTournamentForView);
+        res.render('list_tournament_for_ranking_player', { title: 'Bảng xếp hạng', listTournament: listTournamentForView });
+    }
+};

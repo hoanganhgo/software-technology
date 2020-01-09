@@ -34,9 +34,7 @@ router.get('/account', User.getAcount);
 router.get('/ranking_table', tournamentController.getRankingTable);
 
 /*GET goal leader list page*/
-router.get('/goal_leader_list', function (req, res, next) {
-  res.render('goal_leader_list', { title: 'Vua phá lưới' });
-});
+router.get('/goal_leader_list', tournamentController.getRankingPlayer);
 
 /*GET tournament create page*/
 router.get('/tournament_create', tournament.createTournament);
