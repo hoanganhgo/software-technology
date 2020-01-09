@@ -86,6 +86,27 @@ exports.getAllMatchPlayedByIdTournament = async (idTournament) =>{
     return listMatch;
 };
 
-exports.getAllTeamByIdTournament = () =>{
+exports.getAllTeamByIdTournament = async (idTournament) =>{
+    const query = "SELECT * FROM DoiBong WHERE GiaiDau = '" + idTournament + "'; ";
+    const listTeam = await database.execute(query);
 
+    return listTeam;
+};
+
+exports.getAllPlayerByIdTournament = async (idTournament) => {
+    const query =
+        "SELECT CT.HoTen AS TenCauThu, DB.TenDoiBong AS TenDoiBong, CT.SoBanThang as SoBanThang, CT.SoAo AS SoAo " +
+        "FROM CauThu AS CT INNER JOIN DoiBong AS DB on CT.DoiBongThiDau = DB.MaDoiBong " +
+        "WHERE CT.GiaiDau = '" + idTournament + "' AND CT.SoBanThang != 0; ";
+    const listPlayer = await database.execute(query);
+    return listPlayer;
+};
+
+exports.checkPlayerIsExist = async (number, idTeam) =>{
+    const query = "SELECT * FROM CauThu WHERE SoAo = '" + number +"' AND DoiBongThiDau = '" + idTeam + "';";
+    const res = await database.execute(query);
+
+    if(res.length == 0)
+        return false;
+    return true;
 };

@@ -56,18 +56,30 @@
                     <label for="input-gold">Cầu thủ ghi bàn</label>
                     <div>
                         <div style="display: inline">
-                            <input name="goldteam1" id="input-team-a" style="height: 100px; border-radius: 3px; border: black solid 1px" placeholder="số áo-phút ghi bàn" type="text" onchange="updateTeamA()">
+                            <input name="goalTeam1" id="input-team-a" style="height: 100px; border-radius: 3px; border: black solid 1px" placeholder="số áo-phút ghi bàn" type="text" onchange="updateTeamA()">
+
                         </div>
 
                         <div style="display: inline">
-                            <input name="goldteam2" id="input-team-b" style="height: 100px; border-radius: 3px; border: black solid 1px" placeholder="số áo-phút ghi bàn" type="text" onchange="updateTeamB()">
+                            <input name="goalTeam2" id="input-team-b" style="height: 100px; border-radius: 3px; border: black solid 1px" placeholder="số áo-phút ghi bàn" type="text" onchange="updateTeamB()">
+
                         </div>
                     </div>
                 </div>
                 <br>
-                <input type="submit" value="Cập nhật" class="submit" onclick="f()" style="border: black solid 1px; border-radius: 3px; background: #0f6674; color: white">
-                <a href="<%=data.urlCancel%>">Hủy</a>
             </form>
+
+            <label id="error-noti" style="width: 100%; text-align: center; color: red"></label>
+
+            <label style="width: 100%; text-align: center;">VD: Cầu thủ số 10 ghi bàn phút thứ 21, nhập 10-21</label>
+            <label style="width: 100%; text-align: center; color: red">Nếu 2 đội hòa, xin hãy để trống</label>
+            <div style="text-align: center">
+
+                <button id="update-result-match" class="submit" onclick="checkForm()" style="border: black solid 1px; border-radius: 3px; background: #0f6674; color: white">
+                    Cập nhật
+                </button>
+                <a href="<%=data.urlCancel%>">Hủy</a>
+            </div>
             <br>
         </div>
     </div>

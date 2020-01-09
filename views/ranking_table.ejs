@@ -32,42 +32,20 @@
             </tr>
           </thead>
           <tbody>
-            <tr>
-              <th scope="row">1</th>
-              <td>Hà nội T&T</td>
-              <td>26</td>
-              <td>15</td>
-              <td>8</td>
-              <td>3</td>
-              <td>60</td>
-              <td>30</td>
-              <td>30</td>
-              <td>56</td>
-            </tr>
-            <tr>
-              <th scope="row">2</th>
-              <td>TP.HCM</td>
-              <td>26</td>
-              <td>15</td>
-              <td>8</td>
-              <td>3</td>
-              <td>60</td>
-              <td>30</td>
-              <td>30</td>
-              <td>56</td>
-            </tr>
-            <tr>
-              <th scope="row">3</th>
-              <td>Than Quảng Ninh</td>
-              <td>26</td>
-              <td>15</td>
-              <td>8</td>
-              <td>3</td>
-              <td>60</td>
-              <td>30</td>
-              <td>30</td>
-              <td>56</td>
-            </tr>
+            <%for(let i = 0; i< listTeam.length; i++) {%>
+              <tr>
+                <th scope="row"><%=i+1%></th>
+                <td><%=listTeam[i].nameTeam%></td>
+                <td><%=listTeam[i].numberMatchPlayed%></td>
+                <td><%=listTeam[i].numberMatchWin%></td>
+                <td><%=listTeam[i].numberMatchDraw%></td>
+                <td><%=listTeam[i].numberMatchLose%></td>
+                <td><%=listTeam[i].numberOfGoal%></td>
+                <td><%=listTeam[i].numberOfGoalConceded%></td>
+                <td><%=listTeam[i].numberGoalsDifferent%></td>
+                <td><%=listTeam[i].totalScore%></td>
+              </tr>
+            <%}%>
           </tbody>
         </table>
       </div>
