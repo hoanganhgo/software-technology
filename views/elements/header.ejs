@@ -13,7 +13,7 @@
             <button onclick="location.href='/ranking_table'" class="btn btn-outline-success btn-header" type="button">Bảng xếp hạng</button>
             <button onclick="location.href='/goal_leader_list'" class="btn btn-outline-success btn-header" type="button">Vua phá lưới</button>
             <%if (typeof username!=="undefined"){%>
-                <button onclick="location.href='/account'" class="btn btn-outline-success btn-user" type="button"><img src=".././images/icon-person.png"/></button>
+                <button id="avatar" onclick="location.href='/account'" class="btn btn-outline-success btn-user" type="button"><img src=".././images/icon-person.png"/></button>
                  <b>Xin chào <%=username%></b>
             <%}%>
             <button id="avatar" hidden onclick="location.href='/account'" class="btn btn-outline-success btn-user" type="button"><img src=".././images/icon-person.png"/></button>

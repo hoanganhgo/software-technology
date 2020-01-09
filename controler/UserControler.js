@@ -31,7 +31,7 @@ exports.postRegister= async (req,res,next)=>{
 
 exports.getAcount = (req,res,next)=>{
 
-    res.render('account',{title: "Tài khoản", username: " bạn"});
+    res.render('account',{title: "Tài khoản", username: req.query.username, name: req.query.name});
 };
 
 exports.login=async (req,res, next)=>{
@@ -61,5 +61,5 @@ exports.login=async (req,res, next)=>{
         return;
     }
 
-    res.render('account',{title: "Tài khoản", username: checkResult[0].HoTen});
+    res.render('account',{title: "Tài khoản", name: checkResult[0].HoTen, username: checkResult[0].TenTaiKhoan});
 };

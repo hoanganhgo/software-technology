@@ -78,7 +78,7 @@
                         input.addEventListener('change', function () {
                            readXlsxFile(input.files[0]).then(function(data) {
                                 if (checkListPlayer(data)===true){
-                                    document.getElementById("username").value="hoanganh";
+
                                }
                                //document.getElementById('dtable').innerHTML = '<table border=1>' + data.map(row => '<tr>' + row.map(cell => `<td>${cell === null ? '' : cell}</td>`).join('') + '</tr>').join('') + '</table>'
                             });
