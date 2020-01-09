@@ -9,12 +9,7 @@ exports.tournamentManagement = async (req, res, next) => {
     }
     else
     {
-        const query =
-            "SELECT * " +
-            "FROM GiaiDau " +
-            "WHERE QuanLy='"+userName+"';";
-
-        const listTournamentOnDB = await database.execute(query);
+        const listTournamentOnDB = await helper.getAllTournamentOnDB(userName);
 
         const listTournamentForView = [];
         const count = 1;
@@ -142,7 +137,6 @@ exports.postTournamentUpdateMatch = async (req, res, next) => {
         "DiemKhach = " + listPlayerTeamB.length + " WHERE MaTranDau = " + idmatch + "; ";
     database.execute(queryUpdateTableTranDau);
 
-
     //Cập nhật số bàn thắng cho cầu thủ
     //Thêm bàn thắng vào bảng BanThang
     helper.upDateResultOfMatch(listPlayerTeamA, idteam1, idteam2, idmatch);
@@ -151,3 +145,30 @@ exports.postTournamentUpdateMatch = async (req, res, next) => {
 
     res.redirect('/tournament_management/update?id=' + idtournament);
 };
+
+exports.getRankingTable = async (req, res, next) =>{
+    const idTournament = req.query.idTournament;
+
+    if(typeof idTournament !== "undefined"){
+        const listMatch = await helper.getAllMatchPlayedByIdTournament(idTournament);
+        res.send(listMatch);
+
+        //res.render('ranking_table', { title: 'Bảng xếp hạng' });
+    }else{
+        const listTournament = await helper.getAllTournamentOnDB("");
+        const listTournamentForView = [];
+
+
+        for(let i = 0; i< listTournament.length; i++){
+            const stt = i + 1;
+            const nameTournament = listTournament[i].TenGiaiDau;
+            const urlRanking = "ranking_table?idTournament=" + listTournament[i].MaGiaiDau;
+
+            const newItem = { stt, nameTournament, urlRanking };
+            listTournamentForView.push(newItem);
+        }
+
+        //res.send(listTournamentForView);
+        res.render('list_tournament_for_ranking', { title: 'Bảng xếp hạng', listTournament: listTournamentForView });
+    }
+}

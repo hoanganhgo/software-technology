@@ -31,9 +31,7 @@ router.get('/account', User.getAcount);
 
 
 /*GET ranking table page*/
-router.get('/ranking_table', function (req, res, next) {
-  res.render('ranking_table', { title: 'Bảng xếp hạng' });
-});
+router.get('/ranking_table', tournamentController.getRankingTable);
 
 /*GET goal leader list page*/
 router.get('/goal_leader_list', function (req, res, next) {
