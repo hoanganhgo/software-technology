@@ -63,4 +63,29 @@ exports.upDateResultOfMatch = async (listGold, idTeam1, idTeam2, idMatch) => {
         database.execute(queryUpdateTableCauThu);
         database.execute(queryInsertTableBanThang);
     }
-}
+};
+
+exports.getAllTournamentOnDB = async (userName) => {
+    let query =
+        "SELECT * " +
+        "FROM GiaiDau ";
+
+    if(userName !==""){
+        query = query.concat("WHERE QuanLy='"+userName+"';");
+    }
+
+    const listTournamentOnDB = await database.execute(query);
+
+    return listTournamentOnDB;
+};
+
+exports.getAllMatchPlayedByIdTournament = async (idTournament) =>{
+    const query = "SELECT * FROM TranDau WHERE GiaiDau = '" + idTournament + "' AND DiemChuNha != '-1'; ";
+    const listMatch = await database.execute(query);
+
+    return listMatch;
+};
+
+exports.getAllTeamByIdTournament = () =>{
+
+};
