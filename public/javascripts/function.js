@@ -253,9 +253,6 @@ function loadUserName() {
     document.getElementById("tournament_create").onclick= function () {
         location.href='/tournament_create';
     };
-    document.getElementById("tournament_list").onclick= function () {
-        location.href='/tournament_list?username='+username;
-    };
     document.getElementById("tournament_management").onclick= function () {
         location.href='/tournament_management?username='+username;
     };

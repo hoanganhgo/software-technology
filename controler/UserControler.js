@@ -26,7 +26,7 @@ exports.postRegister= async (req,res,next)=>{
     let query="INSERT INTO NguoiDung (TenTaiKhoan,MatKhau,HoTen,Email,NgaySinh) VALUES ('"+userName+"','"+
     passWordHash+"','"+name+"','"+email+"','"+dateOfBirth+"');";
     let result = await Database.execute(query);
-    res.render('account',{title: "Trang chủ", username: name});
+    res.render('account',{title: "Trang chủ", username: userName, name: name});
 };
 
 exports.getAcount = (req,res,next)=>{

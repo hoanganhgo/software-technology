@@ -173,11 +173,7 @@ exports.postTournamentUpdateMatch = async (req, res, next) => {
 
 exports.tournament_list=async (req,res,next)=>
 {
-    const username=req.query.username;
-    console.log(username);
-     //const list = [];
-    let query="SELECT * FROM GiaiDau WHERE QuanLy='"+username+"';";
-    let list= await database.execute(query);
+    let list= await tournamentM.GetAll();
 
     res.render('tournament_list', {
         list: list,
