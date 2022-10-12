@@ -18,7 +18,7 @@
     "morgan": "~1.9.1",
     "mysql": "^2.17.1",
     "node-xlsx": "^0.15.0",
-    "read-excel-file": "^4.0.5"
+    "read-excel-file": "^5.5.1"
   },
   "devDependencies": {
     "nodemon": "^2.0.2"
